@@ -1,0 +1,1540 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --muted:#64748b;
+  --accent:#3b82f6;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --danger:#ef4444;
+  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+*{ box-sizing:border-box }
+
+body{ 
+  font-family:'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background:var(--bg);
+  margin:0;
+  color:#1e293b;
+}
+
+@keyframes fadeInUp{
+  from{ opacity:0; transform:translateY(20px) }
+  to{ opacity:1; transform:translateY(0) }
+}
+
+@keyframes slideIn{
+  from{ opacity:0; transform:translateX(-20px) }
+  to{ opacity:1; transform:translateX(0) }
+}
+
+@keyframes pulse{
+  0%, 100%{ opacity:1 }
+  50%{ opacity:0.5 }
+}
+
+@keyframes spin{
+  from{ transform:rotate(0deg) }
+  to{ transform:rotate(360deg) }
+}
+
+@keyframes blob{
+  0%, 100%{ transform:translate(0, 0) scale(1) }
+  33%{ transform:translate(30px, -50px) scale(1.1) }
+  66%{ transform:translate(-20px, 20px) scale(0.9) }
+}
+
+@keyframes float{
+  0%, 100%{ transform:translateY(0px) }
+  50%{ transform:translateY(-8px) }
+}
+
+@keyframes orbit{
+  from{ transform:rotate(0deg) }
+  to{ transform:rotate(360deg) }
+}
+
+@keyframes shimmer{
+  0%{ background-position:0% center }
+  100%{ background-position:200% center }
+}
+
+.app-root{ display:flex; flex-direction:column; min-height:100vh; background:var(--bg) }
+
+/* ===== LOGIN PAGE ===== */
+.auth-container-modern{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment:fixed;
+}
+
+.auth-background{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:0;
+  overflow:hidden;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(245, 158, 11, 0.15) 0%, transparent 50%);
+}
+
+.auth-blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(40px);
+  opacity:0.3;
+}
+
+.blob-1{
+  width:300px;
+  height:300px;
+  background:#3b82f6;
+  top:-50px;
+  right:-50px;
+  animation:blob 7s infinite;
+}
+
+.blob-2{
+  width:200px;
+  height:200px;
+  background:#10b981;
+  bottom:100px;
+  left:50px;
+  animation:blob 6s infinite;
+  animation-delay:1s;
+}
+
+.blob-3{
+  width:150px;
+  height:150px;
+  background:#f59e0b;
+  top:50%;
+  right:20%;
+  animation:blob 8s infinite;
+  animation-delay:2s;
+}
+
+.auth-content{
+  position:relative;
+  z-index:10;
+  width:100%;
+  max-width:420px;
+}
+
+.auth-box-modern{
+  background:rgba(255, 255, 255, 0.95);
+  backdrop-filter:blur(10px);
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0, 0, 0, 0.2);
+  animation:fadeInUp 0.6s ease-out;
+}
+
+.auth-icon{
+  font-size:3rem;
+  text-align:center;
+  margin-bottom:16px;
+  animation:pulse 2s infinite;
+}
+
+.auth-box-modern h2{
+  margin:0 0 6px;
+  font-size:1.8rem;
+  background:var(--primary-gradient);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-align:center;
+}
+
+.auth-tagline{
+  text-align:center;
+  color:var(--muted);
+  margin:0 0 24px;
+  font-size:0.95rem;
+}
+
+.form-group{
+  margin-bottom:20px;
+  animation:fadeInUp 0.6s ease-out;
+}
+
+.form-group label{
+  display:block;
+  font-weight:600;
+  margin-bottom:8px;
+  color:#1e293b;
+  font-size:0.95rem;
+}
+
+.input-wrapper{
+  position:relative;
+}
+
+.input-wrapper input{
+  width:100%;
+  padding:12px 40px 12px 14px;
+  border:2px solid #e2e8f0;
+  border-radius:10px;
+  font-family:inherit;
+  font-size:0.95rem;
+  transition:all 0.3s;
+  background:white;
+}
+
+.input-wrapper input:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-wrapper input:disabled{
+  background:#f8fafc;
+  opacity:0.6;
+}
+
+.input-icon{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1.1rem;
+  pointer-events:none;
+}
+
+.error-banner{
+  background:#fee2e2;
+  color:#991b1b;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:20px;
+  border-left:4px solid #ef4444;
+  font-size:0.9rem;
+  animation:slideIn 0.4s ease-out;
+}
+
+.btn-primary-modern{
+  width:100%;
+  background:var(--primary-gradient);
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  font-size:1rem;
+  margin-top:16px;
+  transition:all 0.3s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-family:inherit;
+}
+
+.btn-primary-modern:hover:not(:disabled){
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-primary-modern:disabled{
+  opacity:0.7;
+  cursor:not-allowed;
+}
+
+.btn-primary-modern.loading{
+  opacity:0.8;
+}
+
+.spinner{
+  width:16px;
+  height:16px;
+  border:2px solid rgba(255,255,255,0.3);
+  border-top-color:white;
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+
+.btn-link{
+  background:transparent;
+  border:none;
+  color:var(--accent);
+  cursor:pointer;
+  font-size:0.9rem;
+  padding:6px 0;
+  text-decoration:underline;
+  font-family:inherit;
+}
+
+.btn-link:hover{ opacity:0.7 }
+
+.btn-ghost-modern{
+  width:100%;
+  background:transparent;
+  border:2px solid #e2e8f0;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  margin-top:12px;
+  transition:all 0.3s;
+  font-family:inherit;
+}
+
+.btn-ghost-modern:hover{
+  background:#f1f5f9;
+  border-color:var(--accent);
+}
+
+.auth-footer{
+  display:flex;
+  justify-content:center;
+  margin-top:16px;
+}
+
+.auth-info{
+  text-align:center;
+  color:var(--muted);
+  font-size:0.85rem;
+  margin-top:16px;
+  margin-bottom:0;
+}
+
+/* ===== TOPBAR ===== */
+.topbar-modern{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 24px;
+  background:linear-gradient(135deg,#ffffff 0%,#f8fafc 100%);
+  box-shadow:0 2px 8px rgba(15,23,42,0.08);
+  border-bottom:2px solid #e2e8f0;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.topbar-left{
+  display:flex;
+  align-items:center;
+}
+
+.app-logo{ 
+  margin:0; 
+  font-size:1.4rem;
+  background:var(--primary-gradient); 
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent;
+  font-weight:700;
+}
+
+.nav-tabs-modern{
+  display:flex;
+  gap:4px;
+  align-items:center;
+  background:#f1f5f9;
+  padding:4px;
+  border-radius:10px;
+}
+
+.nav-btn-modern{
+  background:transparent;
+  border:none;
+  padding:8px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:0.85rem;
+  transition:all 0.2s;
+  font-family:inherit;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--muted);
+}
+
+.nav-icon{
+  font-size:1rem;
+}
+
+.nav-btn-modern:hover{ 
+  background:rgba(59, 130, 246, 0.1);
+  color:var(--accent);
+}
+
+.nav-btn-modern.active{ 
+  background:white;
+  color:var(--accent);
+  box-shadow:0 2px 8px rgba(59, 130, 246, 0.15);
+  font-weight:600;
+}
+
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.user-avatar-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.avatar-container{
+  position:relative;
+  width:48px;
+  height:48px;
+}
+
+.avatar-circle{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:700;
+  font-size:1.1rem;
+  box-shadow:0 4px 12px rgba(0, 0, 0, 0.15);
+  animation:float 3s ease-in-out infinite;
+}
+
+.avatar-initials{
+  z-index:2;
+  position:relative;
+}
+
+.avatar-pulse{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:2px solid currentColor;
+  opacity:0.3;
+  animation:pulse 2s ease-out infinite;
+}
+
+.avatar-orbit{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:60px;
+  height:60px;
+  transform:translate(-50%, -50%);
+  border:1px solid rgba(59, 130, 246, 0.2);
+  border-radius:50%;
+  animation:orbit 20s linear infinite;
+}
+
+.user-info{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+
+.user-name{
+  font-weight:600;
+  color:#1e293b;
+  font-size:0.9rem;
+}
+
+.user-health{
+  font-size:0.75rem;
+  color:var(--muted);
+}
+
+.health-badge-mini{
+  background:#e0f2fe;
+  color:#0369a1;
+  padding:3px 8px;
+  border-radius:4px;
+  font-weight:500;
+  font-size:0.7rem;
+}
+
+.btn-logout{
+  background:transparent;
+  border:2px solid #cbd5e1;
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:all 0.2s;
+}
+
+.btn-logout:hover{
+  background:#fee2e2;
+  border-color:#ef4444;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content-modern{ 
+  flex:1; 
+  padding:24px;
+  background:linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.03) 100%);
+}
+
+.main-grid{
+  display:grid;
+  grid-template-columns:1fr 350px;
+  gap:20px;
+  max-width:1400px;
+  margin:0 auto;
+}
+
+.left{ animation:fadeInUp 0.6s ease-out }
+.right{ animation:fadeInUp 0.7s ease-out }
+
+.page-center{
+  max-width:900px;
+  margin:0 auto;
+  animation:fadeInUp 0.6s ease-out;
+}
+
+/* ===== GALLERY ===== */
+.gallery-container{ }
+
+.gallery-header{
+  background:linear-gradient(135deg, #e0e7ff 0%, #f0e7ff 100%);
+  padding:24px;
+  border-radius:16px;
+  margin-bottom:24px;
+  border:1px solid #e2e8f0;
+  background-attachment:fixed;
+}
+
+.gallery-header h2{
+  margin:0 0 12px;
+  font-size:1.4rem;
+  color:#1e293b;
+}
+
+.health-advice{
+  margin:0;
+  color:#334155;
+  line-height:1.6;
+  white-space:pre-line;
+  font-size:0.95rem;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+  gap:16px;
+}
+
+.food-card-enhanced{
+  background:var(--card);
+  border-radius:14px;
+  border:2px solid #e2e8f0;
+  padding:0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  cursor:pointer;
+  transition:all 0.3s;
+  animation:fadeInUp 0.5s ease-out;
+}
+
+.food-card-enhanced:hover{
+  border-color:var(--accent);
+  box-shadow:0 8px 24px rgba(59, 130, 246, 0.15);
+  transform:translateY(-4px);
+}
+
+.food-image-wrapper{
+  position:relative;
+  height:160px;
+  overflow:hidden;
+  background:linear-gradient(135deg, #f0f4f8, #e0e8f0);
+}
+
+.food-image-wrapper img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.3s;
+}
+
+.food-card-enhanced:hover .food-image-wrapper img{
+  transform:scale(1.05);
+}
+
+.badge-recommended{
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:var(--success-gradient);
+  color:white;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:0.8rem;
+  font-weight:600;
+}
+
+.badge-avoid{
+  position:absolute;
+  top:8px;
+  right:8px;
+  background:linear-gradient(135deg, #f59e0b, #f97316);
+  color:white;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:0.8rem;
+  font-weight:600;
+}
+
+.food-info{
+  padding:16px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.food-name{
+  font-weight:700;
+  font-size:1rem;
+  color:#1e293b;
+  margin-bottom:10px;
+}
+
+.food-stats{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.stat{
+  background:#f8fafc;
+  padding:8px;
+  border-radius:6px;
+  text-align:center;
+  border:1px solid #e2e8f0;
+}
+
+.stat-label{
+  display:block;
+  font-size:0.75rem;
+  color:var(--muted);
+  font-weight:500;
+}
+
+.stat-value{
+  display:block;
+  font-size:0.95rem;
+  font-weight:700;
+  color:var(--accent);
+}
+
+.food-benefits{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.benefit-tag{
+  background:#e0f2fe;
+  color:#0369a1;
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:0.75rem;
+  font-weight:500;
+}
+
+/* ===== NUTRITION CARD ===== */
+.nutrition-box{
+  background:var(--card);
+  border-radius:14px;
+  padding:20px;
+  border:2px solid #e2e8f0;
+  animation:fadeInUp 0.6s ease-out;
+}
+
+.nutrition-box.empty{
+  color:var(--muted);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-height:300px;
+  text-align:center;
+}
+
+.nutrition-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:start;
+  margin-bottom:16px;
+  gap:10px;
+}
+
+.nutrition-header h3{ margin:0; color:#1e293b }
+
+.health-badge{
+  font-size:0.75rem;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+.health-badge.recommended{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.health-badge.avoid{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.nutrition-description{
+  color:var(--muted);
+  font-size:0.9rem;
+  margin:0 0 16px;
+}
+
+.calorie-highlight{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:16px;
+}
+
+.calorie-circle{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.4rem;
+  color:var(--warning);
+  flex-shrink:0;
+}
+
+.calorie-label{
+  font-size:0.85rem;
+  color:#92400e;
+  font-weight:600;
+  line-height:1.4;
+}
+
+.macronutrients,
+.micronutrients,
+.health-benefits,
+.recommendation-box{
+  margin-bottom:16px;
+}
+
+.macronutrients h4,
+.micronutrients h4,
+.health-benefits h4,
+.recommendation-box h4{
+  margin:0 0 12px;
+  font-size:0.95rem;
+  color:#1e293b;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.nutrient-bar{
+  margin-bottom:12px;
+}
+
+.bar-label{
+  font-size:0.85rem;
+  font-weight:500;
+  color:#1e293b;
+  margin-bottom:4px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.bar-container{
+  height:8px;
+  background:#e2e8f0;
+  border-radius:4px;
+  overflow:hidden;
+}
+
+.bar-fill{
+  height:100%;
+  border-radius:4px;
+  transition:width 0.3s;
+}
+
+.bar-value{
+  font-size:0.8rem;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.micro-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:10px;
+}
+
+.micro-item{
+  background:#f8fafc;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #e2e8f0;
+  text-align:center;
+}
+
+.micro-label{
+  display:block;
+  font-size:0.8rem;
+  color:var(--muted);
+  font-weight:500;
+}
+
+.micro-value{
+  display:block;
+  font-size:0.95rem;
+  font-weight:700;
+  color:var(--accent);
+  margin-top:4px;
+}
+
+.benefits-list{
+  margin:0;
+  padding-left:18px;
+  list-style:none;
+}
+
+.benefits-list li{
+  color:#1e293b;
+  font-size:0.9rem;
+  margin-bottom:6px;
+}
+
+.condition-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.condition-tag{
+  background:linear-gradient(135deg, #e0e7ff, #f0e7ff);
+  color:#4c1d95;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:0.8rem;
+  font-weight:500;
+}
+
+/* ===== FOOTER ===== */
+.footer-modern{
+  padding:20px 24px;
+  background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-top:2px solid #e2e8f0;
+  text-align:center;
+  color:var(--muted);
+  font-size:0.9rem;
+  margin-top:auto;
+}
+
+.footer-content p{
+  margin:4px 0;
+}
+
+.footer-tip{
+  color:var(--accent);
+  font-size:0.85rem;
+  font-weight:500;
+}
+
+.small{ font-size:0.85rem; color:var(--muted) }
+
+/* ===== HEALTH REPORT ===== */
+.health-report-container{
+  padding:32px;
+  max-width:1400px;
+  margin:0 auto;
+  animation:fadeInUp 0.6s ease-out;
+}
+
+.report-header{
+  text-align:center;
+  margin-bottom:48px;
+  background:linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+  padding:40px;
+  border-radius:20px;
+  border:2px solid #e0f2fe;
+}
+
+.report-header h1{
+  font-size:2.5rem;
+  margin:0 0 8px 0;
+  color:#0f172a;
+  font-weight:700;
+}
+
+.report-subtitle{
+  font-size:1.1rem;
+  color:var(--muted);
+  margin:0;
+}
+
+.health-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap:20px;
+  margin-top:24px;
+}
+
+.summary-card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  text-align:center;
+  border:2px solid #e2e8f0;
+}
+
+.summary-stat{
+  font-size:1rem;
+  color:var(--muted);
+}
+
+.summary-stat strong{
+  display:block;
+  font-size:1.6rem;
+  color:var(--accent);
+  margin-top:8px;
+}
+
+/* Disease Analysis Section */
+.disease-analysis-section{
+  margin-bottom:48px;
+}
+
+.disease-analysis-section h2{
+  font-size:1.8rem;
+  margin:0 0 24px 0;
+  color:#0f172a;
+}
+
+.diseases-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));
+  gap:24px;
+}
+
+.disease-card{
+  background:white;
+  border-radius:16px;
+  padding:24px;
+  border-left:6px solid var(--accent);
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  transition:all 0.3s ease;
+  animation:slideIn 0.5s ease-out;
+}
+
+.disease-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.disease-header{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.disease-icon{
+  font-size:2.2rem;
+  line-height:1;
+}
+
+.disease-header h3{
+  margin:0 0 8px 0;
+  font-size:1.3rem;
+  color:#0f172a;
+}
+
+.priority-badge{
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:20px;
+  font-size:0.75rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.priority-critical{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.priority-high{
+  background:#fef08a;
+  color:#92400e;
+}
+
+.priority-medium{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.disease-content > div{
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.disease-content > div:last-child{
+  margin-bottom:0;
+  padding-bottom:0;
+  border-bottom:none;
+}
+
+.disease-content h4{
+  margin:0 0 12px 0;
+  font-size:0.95rem;
+  font-weight:600;
+  color:#0f172a;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.disease-content ul{
+  margin:0;
+  padding-left:20px;
+  list-style:none;
+}
+
+.disease-content li{
+  position:relative;
+  padding-left:12px;
+  margin-bottom:8px;
+  color:#475569;
+  line-height:1.5;
+}
+
+.disease-content li:before{
+  content:'✓';
+  position:absolute;
+  left:0;
+  color:var(--success);
+  font-weight:bold;
+}
+
+.targets-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+  gap:12px;
+}
+
+.target-item{
+  background:#f8fafc;
+  padding:12px;
+  border-radius:8px;
+  font-size:0.9rem;
+}
+
+.target-label{
+  display:block;
+  color:var(--muted);
+  font-size:0.8rem;
+  margin-bottom:4px;
+  text-transform:uppercase;
+}
+
+.target-value{
+  display:block;
+  font-weight:600;
+  color:var(--accent);
+  font-size:1rem;
+}
+
+.restriction-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.restriction-tag{
+  display:inline-block;
+  background:#fef2f2;
+  color:#be123c;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:0.85rem;
+  font-weight:500;
+  border:1px solid #fbcfe8;
+}
+
+.rec-items{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.rec-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.rec-priority{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:0.7rem;
+  font-weight:700;
+  text-transform:uppercase;
+  white-space:nowrap;
+  margin-top:2px;
+}
+
+.rec-critical{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.rec-high{
+  background:#fef08a;
+  color:#92400e;
+}
+
+.rec-medium{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.rec-item strong{
+  display:block;
+  margin-bottom:2px;
+}
+
+.rec-item p{
+  margin:0;
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+/* Recommended Foods Section */
+.recommended-foods-section{
+  margin-bottom:48px;
+}
+
+.recommended-foods-section h2{
+  font-size:1.8rem;
+  margin:0 0 8px 0;
+  color:#0f172a;
+}
+
+.section-subtitle{
+  color:var(--muted);
+  margin:0 0 24px 0;
+  font-size:1rem;
+}
+
+.recommended-foods-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+  gap:24px;
+}
+
+.recommended-food-card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  transition:all 0.3s ease;
+  animation:fadeInUp 0.5s ease-out;
+}
+
+.recommended-food-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 12px 24px rgba(0,0,0,0.12);
+}
+
+.food-image-wrapper{
+  position:relative;
+  width:100%;
+  height:200px;
+  overflow:hidden;
+}
+
+.food-image-wrapper img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.3s ease;
+}
+
+.recommended-food-card:hover .food-image-wrapper img{
+  transform:scale(1.1);
+}
+
+.score-badge{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:var(--success);
+  color:white;
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:700;
+  font-size:0.9rem;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+.food-details{
+  padding:20px;
+}
+
+.food-details h4{
+  margin:0 0 4px 0;
+  font-size:1.2rem;
+  color:#0f172a;
+}
+
+.serving-size{
+  font-size:0.85rem;
+  color:var(--muted);
+  margin:0 0 16px 0;
+}
+
+.nutrition-summary{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:8px;
+  margin-bottom:16px;
+}
+
+.nutrition-item{
+  text-align:center;
+  padding:12px 8px;
+  background:#f8fafc;
+  border-radius:8px;
+  border:1px solid #e2e8f0;
+}
+
+.nutrition-label{
+  display:block;
+  font-size:0.75rem;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+.nutrition-value{
+  display:block;
+  font-weight:600;
+  color:var(--accent);
+  font-size:1rem;
+}
+
+.benefits-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:16px;
+}
+
+.benefit-tag{
+  display:inline-block;
+  background:#dbeafe;
+  color:#1e40af;
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:0.8rem;
+  font-weight:500;
+}
+
+.disease-impact{
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid #e2e8f0;
+}
+
+.disease-impact h5{
+  margin:0 0 12px 0;
+  font-size:0.9rem;
+  color:#0f172a;
+}
+
+.impact-note{
+  padding:12px;
+  background:#f8fafc;
+  border-left:4px solid var(--accent);
+  border-radius:6px;
+  margin-bottom:8px;
+}
+
+.impact-note:last-child{
+  margin-bottom:0;
+}
+
+.impact-note strong{
+  display:block;
+  font-size:0.85rem;
+  margin-bottom:4px;
+}
+
+.impact-note p{
+  margin:0;
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+/* Meal Suggestion Section */
+.meal-suggestion-section{
+  margin-bottom:48px;
+}
+
+.meal-suggestion-section h2{
+  font-size:1.8rem;
+  margin:0 0 24px 0;
+  color:#0f172a;
+}
+
+.meal-plan{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:20px;
+  margin-bottom:32px;
+}
+
+.meal-card{
+  background:linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border:2px solid #e2e8f0;
+  border-radius:16px;
+  padding:20px;
+  transition:all 0.3s ease;
+}
+
+.meal-card:hover{
+  border-color:var(--accent);
+  box-shadow:0 8px 16px rgba(59,130,246,0.1);
+}
+
+.meal-card h3{
+  margin:0 0 12px 0;
+  font-size:1.1rem;
+  color:#0f172a;
+}
+
+.meal-content p:first-child{
+  font-weight:600;
+  color:#0f172a;
+  margin:0 0 8px 0;
+}
+
+.meal-macros{
+  font-size:0.85rem;
+  color:var(--muted);
+  margin:8px 0;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.meal-macros span{
+  background:#e0f2fe;
+  padding:4px 8px;
+  border-radius:4px;
+}
+
+.meal-benefit{
+  font-size:0.85rem;
+  color:var(--success);
+  margin:8px 0 0 0;
+  font-style:italic;
+}
+
+.daily-totals{
+  background:linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border:2px solid #bbf7d0;
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:48px;
+}
+
+.daily-totals h4{
+  margin:0 0 16px 0;
+  font-size:1.1rem;
+  color:#0f172a;
+}
+
+.totals-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+  gap:16px;
+}
+
+.total-item{
+  text-align:center;
+  padding:16px;
+  background:white;
+  border-radius:12px;
+  border:1px solid #86efac;
+}
+
+.total-item span{
+  display:block;
+  color:var(--muted);
+  font-size:0.85rem;
+  margin-bottom:4px;
+}
+
+.total-item strong{
+  display:block;
+  font-size:1.3rem;
+  color:var(--success);
+}
+
+/* Health Tips Section */
+.health-tips-section{
+  margin-bottom:48px;
+}
+
+.health-tips-section h2{
+  font-size:1.8rem;
+  margin:0 0 24px 0;
+  color:#0f172a;
+}
+
+.tips-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:20px;
+}
+
+.tip-card{
+  background:white;
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  border-left:4px solid var(--accent);
+  transition:all 0.3s ease;
+  animation:fadeInUp 0.5s ease-out;
+}
+
+.tip-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 16px rgba(0,0,0,0.1);
+}
+
+.tip-card h4{
+  margin:0 0 12px 0;
+  font-size:1rem;
+  color:#0f172a;
+}
+
+.tip-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:0.95rem;
+}
+
+/* Disclaimer */
+.disclaimer-section{
+  background:linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
+  border:2px solid #fcd34d;
+  border-radius:16px;
+  padding:24px;
+  text-align:center;
+  margin-top:48px;
+}
+
+.disclaimer-section p{
+  margin:0;
+  color:#78350f;
+  line-height:1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1024px){
+  .main-grid{ grid-template-columns:1fr }
+  .nutrition-box{ position:relative }
+  .diseases-grid{ grid-template-columns:1fr }
+  .health-report-container{ padding:24px }
+}
+
+@media (max-width:768px){
+  .topbar-modern{ flex-direction:column; text-align:center }
+  .nav-tabs-modern{ width:100% }
+  .gallery{ grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)) }
+  .food-image-wrapper{ height:120px }
+  .report-header h1{ font-size:1.8rem }
+  .recommended-foods-grid{ grid-template-columns:1fr }
+  .nutrition-summary{ grid-template-columns:repeat(2, 1fr) }
+}
+
+@media (max-width:640px){
+  .gallery{ grid-template-columns:1fr }
+  .food-card-enhanced{ width:100% }
+  .auth-box-modern{ padding:24px }
+  .nutrition-box{ padding:16px }
+  .topbar-right{ flex-direction:column }
+}
+
+/* HealthQuestionnaire row-based UI */
+.questionnaire-container{ padding:28px; max-width:880px; margin:0 auto }
+.questionnaire-box.profile-rows{ background:white; padding:20px; border-radius:14px; box-shadow:0 6px 18px rgba(2,6,23,0.06); border:1px solid #eef2ff }
+.questionnaire-box.profile-rows h2{ margin:0 0 6px 0; font-size:1.6rem }
+.questionnaire-box.profile-rows .subtitle{ color:var(--muted); margin:0 0 16px 0 }
+.profile-row{ display:flex; align-items:flex-start; gap:16px; padding:14px 8px; border-bottom:1px dashed #eef2ff }
+.profile-row:last-child{ border-bottom:none }
+.row-left{ display:flex; gap:12px; align-items:center; width:38% }
+.row-icon{ font-size:1.6rem; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#eef2ff,#f8fafc); border-radius:10px }
+.row-title{ font-weight:600; color:#0f172a }
+.row-sub{ font-size:0.85rem; color:var(--muted) }
+.row-right{ width:62%; display:flex; align-items:center }
+.row-right input, .row-right textarea{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid #e6eef8; font-size:0.95rem }
+.diseases-row{ display:flex; gap:8px; flex-wrap:wrap }
+.disease-chip{ border:1px solid #e6eef8; background:#fff; padding:8px 12px; border-radius:999px; cursor:pointer; transition:all 0.18s ease; font-weight:600 }
+.disease-chip.active{ background:var(--accent); color:white; transform:translateY(-3px); box-shadow:0 8px 20px rgba(59,130,246,0.12) }
+.disease-chip:focus{ outline:none }
+.form-actions{ display:flex; justify-content:flex-end; margin-top:16px }
+.form-actions .btn-primary{ padding:10px 18px; border-radius:10px }
+
+@media (max-width:768px){
+  .row-left{ width:36% }
+  .row-right{ width:64% }
+}
+
+@media (max-width:520px){
+  .profile-row{ flex-direction:column; align-items:stretch }
+  .row-left{ width:100%; margin-bottom:8px }
+  .row-right{ width:100% }
+  .form-actions{ justify-content:center }
+  .health-report-container{ padding:16px }
+  .report-header{ padding:24px }
+  .health-summary-grid{ grid-template-columns:1fr }
+  .tips-grid{ grid-template-columns:1fr }
+  .meal-plan{ grid-template-columns:1fr }
+}
